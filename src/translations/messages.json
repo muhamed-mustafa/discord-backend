@@ -1,0 +1,58 @@
+{
+  "notAuthorized": {
+    "en": "Not authorized to access this route",
+    "ar": "غير مصرح له بالوصول إلى هذا المسار"
+  },
+  "tokenExpired": {
+    "en": "Token expired",
+    "ar": "انتهت صلاحية الرمز المميز"
+  },
+  "invalidToken": {
+    "en": "Invalid token",
+    "ar": "رمز مميز غير صالح"
+  },
+  "unauthorizedRole": {
+    "en": "Unauthorized: User role '{{role}}' does not have access to this route",
+    "ar": "غير مصرح به: دور المستخدم '{{role}}' ليس لديه الوصول إلى هذا المسار"
+  },
+  "serverError": {
+    "en": "Server error",
+    "ar": "خطأ في الخادم"
+  },
+  "nameIsRequired": {
+    "en": "Name is required",
+    "ar": "الاسم مطلوب"
+  },
+  "nameLengthError": {
+    "en": "Name must be at least 3 characters long",
+    "ar": "يجب أن يكون الاسم على الأقل 3 أحرف"
+  },
+  "emailIsRequired": {
+    "en": "Email required",
+    "ar": "البريد الإلكتروني مطلوب"
+  },
+  "invalidEmail": {
+    "en": "Invalid email address",
+    "ar": "عنوان البريد الإلكتروني غير صالح"
+  },
+  "passwordIsRequired": {
+    "en": "Password required",
+    "ar": "كلمة المرور مطلوبة"
+  },
+  "passwordLengthError": {
+    "en": "Password must be at least 6 characters long",
+    "ar": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل"
+  },
+  "EmailAlreadyExists": {
+    "ar": "البريد الإلكتروني مسجل بالفعل",
+    "en": "Email already exists"
+  },
+  "InvalidCredentials": {
+    "ar": "بيانات غير صحيحةز اعد المحاولة مرة اخري",
+    "en": "Invalid credentials. Please try again"
+  },
+  "tokenRequired": {
+    "ar": "يتطلب الوصول رمزًا (توكن) للمصادقة",
+    "en": "Access requires a token for authentication"
+  }
+}
