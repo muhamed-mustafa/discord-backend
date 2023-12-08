@@ -43,7 +43,7 @@
     "en": "Password must be at least 6 characters long",
     "ar": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل"
   },
-  "EmailAlreadyExists": {
+  "emailAlreadyExists": {
     "ar": "البريد الإلكتروني مسجل بالفعل",
     "en": "Email already exists"
   },
@@ -54,5 +54,13 @@
   "tokenRequired": {
     "ar": "يتطلب الوصول رمزًا (توكن) للمصادقة",
     "en": "Access requires a token for authentication"
+  },
+  "UserNotFound": {
+    "ar": "المستخدم غير موجود",
+    "en": "User Not Found"
+  },
+  "invalidPassword": {
+    "ar": "الباسورد غير صحيح",
+    "en": "password not correct"
   }
 }

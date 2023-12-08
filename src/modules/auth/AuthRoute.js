@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { AuthController } from '@root/modules/auth/AuthController.js';
-import AuthValidator from '@root/modules/auth/validation.js';
+import { AuthValidator } from '@root/modules/auth/validation.js';
 
 class AuthRoutes {
   constructor() {
@@ -11,13 +11,13 @@ class AuthRoutes {
   initializeRoutes() {
     this.router.post(
       '/register',
-      AuthValidator.getRegisterValidator(),
+      AuthValidator.getValidationChain(AuthValidator.signupValidation()),
       AuthController.register
     );
 
     this.router.post(
       '/login',
-      AuthValidator.getLoginValidator(),
+      AuthValidator.getValidationChain(AuthValidator.loginValidation()),
       AuthController.login
     );
   }

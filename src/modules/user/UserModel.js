@@ -11,10 +11,9 @@ export class UserSchema extends Schema {
           required: true,
         },
 
-        mail: {
+        email: {
           type: String,
           required: true,
-          unique: true,
         },
 
         password: {
@@ -42,8 +41,8 @@ export class UserSchema extends Schema {
       return bcrypt.compare(enteredPassword, this.password);
     };
 
-    this.methods.getSignedJwtToken = function (mail) {
-      return jwt.sign({ userId: this.id, mail }, process.env.JWT_TOKEN, {
+    this.methods.getSignedJwtToken = function (email) {
+      return jwt.sign({ userId: this.id, email }, process.env.JWT_TOKEN, {
         expiresIn: process.env.JWT_EXPIRE_TIME,
       });
     };

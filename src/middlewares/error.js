@@ -3,8 +3,7 @@ export const globalError = (err, _req, res, _next) => {
 
   err.status = err.status || 'error';
 
-  const response = 
-  {
+  const response = {
     status: err.status,
     message: err.message,
   };
