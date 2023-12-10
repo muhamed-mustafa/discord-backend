@@ -21,6 +21,7 @@ import { globalError } from '@root/middlewares/error.js';
 import { readFileSync } from 'fs';
 import { RouteManager } from './index.js';
 import { ErrorResponse } from '@root/utils/errorResponse.js';
+import { SocketServer } from './socketServer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -131,6 +132,8 @@ export class Application {
     this.server = http.createServer(this.app).listen(process.env.PORT, () => {
       console.log(`Server Is Running On Port ${process.env.PORT}`.bgMagenta);
     });
+
+    this.startServer = new SocketServer(this.server);
   }
 
   handleUnhandledRejection() {
