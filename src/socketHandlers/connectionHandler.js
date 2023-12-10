@@ -1,7 +1,6 @@
-// NewConnectionHandler.js
 import { connectedUsersManager } from '../serverStore.js';
 
-class ConnectionHandler {
+class ConnectionManager {
   constructor(io) {
     this.io = io;
   }
@@ -18,4 +17,4 @@ class ConnectionHandler {
   }
 }
 
-export { ConnectionHandler };
+export { ConnectionManager };

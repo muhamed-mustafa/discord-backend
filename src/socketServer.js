@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 import TokenVerifierSocket from '@root/middlewares/authSocket.js';
-import { ConnectionHandler } from '@root/socketHandlers/connectionHandler.js';
+import { ConnectionManager } from '@root/socketHandlers/connectionHandler.js';
 
 class SocketServer {
   constructor(server) {
@@ -11,15 +11,15 @@ class SocketServer {
       },
     });
 
-    this.connectionHandler = new ConnectionHandler(this.io);
+    this.connectionManager = new ConnectionManager(this.io);
 
     this.io.use((socket, next) => {
       TokenVerifierSocket.verifyTokenSocket(socket, next);
 
-      this.connectionHandler.handleNewConnection(socket);
+      this.connectionManager.handleNewConnection(socket);
 
       socket.on('disconnect', () => {
-        this.connectionHandler.handleRemoveConnection(socket);
+        this.connectionManager.handleRemoveConnection(socket);
       });
     });
 
