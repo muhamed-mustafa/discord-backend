@@ -1,4 +1,4 @@
-import jwt from 'jwt';
+import jwt from 'jsonwebtoken';
 import { ErrorResponse } from '@root/utils/errorResponse.js';
 import i18n from 'i18n';
 
@@ -8,9 +8,8 @@ class TokenVerifier {
   }
 
   verifyToken(req, _res, next) {
-
-    let { token } = req.body || req.query || req.headers['authorization'];
-
+    let token = req.headers.authorization.split(' ')[1];
+    
     if (!token) throw new ErrorResponse(i18n.__('tokenRequired'), 409);
 
     try {
@@ -19,10 +18,7 @@ class TokenVerifier {
       const decoded = jwt.verify(token, process.env.JWT_TOKEN);
 
       req.user = decoded;
-
-    } 
-    
-    catch (err) {
+    } catch (err) {
       throw new ErrorResponse(i18n.__('invalidToken'), 401);
     }
 

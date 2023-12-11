@@ -49,7 +49,7 @@ export class Application {
   async start() {
     dotenv.config({ path: './.env' });
     connectToDatabase();
-    this.i18nConfiguration(this.app);
+    this.i18nConfiguration();
     this.securityMiddleware(this.app);
     this.standardMiddleware(this.app);
     this.initializeRoutes(this.app);
@@ -60,7 +60,9 @@ export class Application {
 
   i18nConfiguration() {
     app.use((req, _res, next) => {
+      console.log('req', req.headers.lang);
       i18n.setLocale(req.headers['lang']?.toString() || 'ar');
+      console.log('req', req.headers.lang);
       return next();
     });
 

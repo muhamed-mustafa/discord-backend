@@ -62,5 +62,29 @@
   "invalidPassword": {
     "ar": "الباسورد غير صحيح",
     "en": "password not correct"
+  },
+  "targetEmailAddressRequired": {
+    "ar": "حقل البريد الإلكتروني المستهدف مطلوب",
+    "en": "The target email address field is required"
+  },
+  "selfInvitationError": {
+    "ar": "لا يمكنك إرسال دعوة لنفسك",
+    "en": "You cannot send an invitation to yourself."
+  },
+  "userNotFoundError": {
+    "ar": "المستخدم غير موجود لعنوان البريد الإلكتروني: {{email}}",
+    "en": "User not found for email address: {{email}}"
+  },
+  "friendInvitationExistsError": {
+    "ar": "تم إرسال دعوة الصداقة بالفعل إلى هذا البريد الإلكتروني",
+    "en": "A friend invitation has already been sent to this email address."
+  },
+  "friendAlreadyAddedError": {
+    "ar": "الصديق تمت إضافته بالفعل. يرجى التحقق من قائمة الأصدقاء الخاصة بك.",
+    "en": "Friend is already added. Please check your friend list."
+  },
+  "invitationCreatedSuccess": {
+    "ar": "تم إرسال دعوة صداقة بنجاح.",
+    "en": "Friendship invitation sent successfully."
   }
 }
