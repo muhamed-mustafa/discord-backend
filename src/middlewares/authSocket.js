@@ -25,7 +25,7 @@ class TokenVerifierSocket {
     
     catch (err) {
       console.log('Failed to verify token', err);
-      throw new ErrorResponse(i18n.__('invalidToken'), 401);
+      return next(new ErrorResponse(i18n.__('invalidToken'), 401));
     }
 
     return next();

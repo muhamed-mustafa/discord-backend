@@ -2,6 +2,7 @@ import { FriendInvitation } from '@root/modules/friendInvitation/FriendInvitatio
 import { ErrorResponse } from '@root/utils/errorResponse.js';
 import i18n from 'i18n';
 import { User } from '@root/modules/user/UserModel.js';
+import { friendsUpdateHandler } from '@root/socketHandlers/updates/friends.js';
 
 class FriendInvitationService {
   constructor(params) {
@@ -24,6 +25,8 @@ class FriendInvitationService {
     if (targetUser.friends.some(friend => friend.toString() === user.userId.toString()))  return next(new ErrorResponse(i18n.__('friendAlreadyAddedError'), 400));
     
     const newInvitation = await FriendInvitation.create({ sender : user.userId, receiver : targetUser.id });
+
+    friendsUpdateHandler.updateFriendsPendingInvitations(targetUser._id.toString());
 
     res.status(201).json({ message: i18n.__('invitationCreatedSuccess'),status : 200 });
   }
