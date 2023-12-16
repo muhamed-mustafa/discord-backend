@@ -22,6 +22,12 @@ class FriendValidator {
         }),
     ];
   }
+
+  static inviteDecisionSchema() {
+    return [
+      check('id').notEmpty().withMessage('IdIsRequired')
+    ];
+  }
 }
 
 export { FriendValidator };

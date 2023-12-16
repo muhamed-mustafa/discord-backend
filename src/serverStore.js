@@ -11,6 +11,8 @@ class ConnectedUsersManager {
 
     await friendsUpdateHandler.updateFriendsPendingInvitations(userId);
 
+    await friendsUpdateHandler.updateFriends(userId);
+
     console.log('Connected to', this.connectedUsers);
   }
 
@@ -31,6 +33,17 @@ class ConnectedUsersManager {
     });
 
     return activeConnections;
+  }
+
+  getOnlineUsers() {
+    const onlineUsers = [];
+
+    this.connectedUsers.forEach((value, key) => {
+      onlineUsers.push({ socketId: key, userId: value.userId });
+    });
+
+    console.log('onlineUsers', onlineUsers);
+    return onlineUsers;
   }
 }
 

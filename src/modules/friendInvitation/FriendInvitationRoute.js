@@ -16,6 +16,20 @@ class FriendInvitationRoutes {
       FriendValidator.getValidationChain(FriendValidator.addFriendValidation()),
       FriendInvitationController.postInvite
     );
+
+    this.router.post(
+      '/accept',
+      TokenVerifier.verifyToken,
+      FriendValidator.getValidationChain(FriendValidator.inviteDecisionSchema()),
+      FriendInvitationController.postAccept
+    );
+    
+    this.router.post(
+      '/reject',
+      TokenVerifier.verifyToken,
+      FriendValidator.getValidationChain(FriendValidator.inviteDecisionSchema()),
+      FriendInvitationController.postReject
+    );
   }
 }
 

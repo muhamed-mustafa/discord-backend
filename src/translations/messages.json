@@ -86,5 +86,21 @@
   "invitationCreatedSuccess": {
     "ar": "تم إرسال دعوة صداقة بنجاح.",
     "en": "Friendship invitation sent successfully."
+  },
+  "invitationNotFoundError": {
+    "ar": "لم يتم العثور على دعوة الصداقة.",
+    "en": "Friendship invitation not found."
+  },
+  "invitationAcceptedSuccess": {
+    "ar": "تم قبول دعوة الصداقة بنجاح.",
+    "en": "Friendship invitation accepted successfully."
+  },
+  "invitationRejectedSuccess": {
+    "ar": "تم رفض دعوة الصداقة بنجاح.",
+    "en": "Friendship invitation rejected successfully."
+  },
+  "IdIsRequired": {
+    "ar": "المعرف مطلوب.",
+    "en": "ID is required."
   }
 }

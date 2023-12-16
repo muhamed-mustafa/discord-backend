@@ -32,6 +32,38 @@ class FriendsUpdateHandler {
       pendingInvitations: pendingInvitations ? pendingInvitations : [],
     });
   }
+
+  sendFriendsList(receiverSocketId, friendsList) {
+    this.socketServer.io.to(receiverSocketId).emit('friends-list', {
+      friendsList: friendsList ? friendsList : [],
+    });
+  }
+
+  async updateFriends(userId) {
+    const receivers = connectedUsersManager.getActiveConnections(userId);
+
+    if (receivers.length) {
+      const user = await User.findById(userId, { _id: 1, friends: 1 }).populate(
+        'friends',
+        '_id username email'
+      );
+
+      if (user) {
+        const friendsList = user.friends.map((friend) => {
+          return {
+            id: friend._id,
+            username: friend.username,
+            email: friend.email,
+          };
+        });
+
+        receivers.forEach((receiverSocketId) => {
+          console.log('friends list', friendsList);
+          this.sendFriendsList(receiverSocketId, friendsList);
+        });
+      }
+    }
+  }
 }
 
 const friendsUpdateHandler = new FriendsUpdateHandler();

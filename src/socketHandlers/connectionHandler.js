@@ -15,6 +15,10 @@ class ConnectionManager {
   handleRemoveConnection(socket) {
     connectedUsersManager.removeConnectedUser(socket.id);
   }
+
+  getOnlineIUsers() {
+    connectedUsersManager.getOnlineUsers();
+  }
 }
 
 export { ConnectionManager };
