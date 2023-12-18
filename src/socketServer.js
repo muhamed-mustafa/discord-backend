@@ -1,8 +1,6 @@
 import { Server } from 'socket.io';
 import TokenVerifierSocket from '@root/middlewares/authSocket.js';
 import { ConnectionManager } from '@root/socketHandlers/connectionHandler.js';
-import { directChatHistoryHandler } from '@root/socketHandlers/directChatHistory';
-import { directMessageHandler } from '@root/socketHandlers/directMessageHandler';
 
 class SocketServer {
   constructor(server) {
@@ -25,14 +23,10 @@ class SocketServer {
       TokenVerifierSocket.verifyTokenSocket(socket, next);
 
       this.connectionManager.handleNewConnection(socket);
+      
+      this.connectionManager.directMessage(socket);
 
-      socket.on('direct-message', (data) => {
-        directMessageHandler.directMessage(socket, data);
-      });
-
-      socket.on('direct-chat-history', (data) => {
-        directChatHistoryHandler.directChatHistory(socket, data);
-      });
+      this.connectionManager.directChatHistory(socket);
 
       socket.on('disconnect', () => {
         this.connectionManager.handleRemoveConnection(socket);

@@ -1,4 +1,3 @@
-import { Message } from '@root/modules/message/messageModel.js';
 import { Conversation } from '@root/modules/conversation/conversationModel.js';
 import { updateChatHistoryHandler } from './updates/chat.js';
 
@@ -16,7 +15,8 @@ class DirectChatHistoryHandler {
     if (conversation) {
       updateChatHistoryHandler.updateChatHistory(
         conversation._id.toString(),
-        socket.id
+        socket.id,
+        receiverId
       );
     }
   }

@@ -1,4 +1,6 @@
 import { friendsUpdateHandler } from '@root/socketHandlers/updates/friends.js';
+import { directChatHistoryHandler } from '@root/socketHandlers/directChatHistory.js';
+import { directMessageHandler } from '@root/socketHandlers/directMessageHandler.js';
 
 class ConnectedUsersManager {
   constructor() {
@@ -44,6 +46,21 @@ class ConnectedUsersManager {
 
     console.log('onlineUsers', onlineUsers);
     return onlineUsers;
+  }
+
+  directMessage(socket) {
+    socket.on('direct-message', (data) => {
+      console.log('data', data);
+      directMessageHandler.directMessage(socket, data);
+    });
+  }
+
+  directChatHistory(socket) {
+    socket.on('direct-chat-history', (data) => {
+      console.log('data14', data);
+
+      directChatHistoryHandler.directChatHistory(socket, data);
+    });
   }
 }
 

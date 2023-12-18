@@ -14,8 +14,11 @@ class DirectMessageHandler {
     });
 
     const conversation = await Conversation.findOneAndUpdate(
-      { participants: { $all: [userId, receiverId] } },
-      { $push: { messages: message._id } },
+      { participants: { $elemMatch: { $in: [userId, receiverId] } } },
+      {
+        $set: { participants: [userId, receiverId] },
+        $push: { messages: message._id },
+      },
       { upsert: true, new: true }
     ).exec();
 

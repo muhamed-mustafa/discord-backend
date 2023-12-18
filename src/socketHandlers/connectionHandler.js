@@ -19,7 +19,14 @@ class ConnectionManager {
   getOnlineIUsers() {
     connectedUsersManager.getOnlineUsers();
   }
+
+  directMessage(socket) {
+    connectedUsersManager.directMessage(socket);
+  }
+
+  directChatHistory(socket) {
+    connectedUsersManager.directChatHistory(socket);
+  }
 }
 
 export { ConnectionManager };
-

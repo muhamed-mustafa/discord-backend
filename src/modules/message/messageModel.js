@@ -9,6 +9,7 @@ export class MessageSchema extends Schema {
         content: { type: String },
 
         type: { type: String },
+
       },
       {
         toJSON: {
