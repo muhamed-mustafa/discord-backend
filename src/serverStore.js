@@ -1,10 +1,14 @@
 import { friendsUpdateHandler } from '@root/socketHandlers/updates/friends.js';
 import { directChatHistoryHandler } from '@root/socketHandlers/directChatHistory.js';
 import { directMessageHandler } from '@root/socketHandlers/directMessageHandler.js';
+import { roomCreateHandler } from '@root/socketHandlers/roomCreateHandler.js';
+
+import { v4 } from 'uuid';
 
 class ConnectedUsersManager {
   constructor() {
     this.connectedUsers = new Map();
+    this.activeRooms = [];
     console.log('Connecting to', this.connectedUsers);
   }
 
@@ -48,6 +52,40 @@ class ConnectedUsersManager {
     return onlineUsers;
   }
 
+  addNewActiveRoom(userId, socketId) {
+    const newActiveRoom = {
+      roomCreator: {
+        userId,
+        socketId,
+      },
+
+      participants: [
+        {
+          userId,
+          socketId,
+        },
+      ],
+
+      roomId: v4(),
+    };
+
+    this.activeRooms = [...this.activeRooms, newActiveRoom];
+
+    return newActiveRoom;
+  }
+
+  getActiveRooms() {
+    return this.activeRooms;
+  }
+
+  async getActiveRoom(roomId) {
+    const activeRoom = this.activeRooms.filter((room) => {
+      return room.roomId === roomId;
+    });
+
+    activeRoom ? { ...activeRoom } : null;
+  }
+
   directMessage(socket) {
     socket.on('direct-message', (data) => {
       console.log('data', data);
@@ -60,6 +98,12 @@ class ConnectedUsersManager {
       console.log('data14', data);
 
       directChatHistoryHandler.directChatHistory(socket, data);
+    });
+  }
+
+  roomCreateHandler(socket) {
+    socket.on('room-create', () => {
+      roomCreateHandler.roomCreate(socket);
     });
   }
 }

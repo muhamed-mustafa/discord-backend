@@ -23,10 +23,12 @@ class SocketServer {
       TokenVerifierSocket.verifyTokenSocket(socket, next);
 
       this.connectionManager.handleNewConnection(socket);
-      
+
       this.connectionManager.directMessage(socket);
 
       this.connectionManager.directChatHistory(socket);
+      
+      this.connectionManager.roomCreateHandler(socket);
 
       socket.on('disconnect', () => {
         this.connectionManager.handleRemoveConnection(socket);

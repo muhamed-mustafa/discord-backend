@@ -27,6 +27,10 @@ class ConnectionManager {
   directChatHistory(socket) {
     connectedUsersManager.directChatHistory(socket);
   }
+
+  roomCreateHandler(socket) {
+    connectedUsersManager.roomCreateHandler(socket);
+  }
 }
 
 export { ConnectionManager };
