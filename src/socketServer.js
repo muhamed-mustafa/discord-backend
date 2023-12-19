@@ -27,11 +27,16 @@ class SocketServer {
       this.connectionManager.directMessage(socket);
 
       this.connectionManager.directChatHistory(socket);
-      
+            
       this.connectionManager.roomCreateHandler(socket);
 
+      this.connectionManager.joinRoomHandler(socket);
+
+      this.connectionManager.leaveRoomHandler(socket);
+
       socket.on('disconnect', () => {
-        this.connectionManager.handleRemoveConnection(socket);
+        // this.connectionManager.handleRemoveConnection(socket);
+        this.connectionManager.disconnectHandler(socket);
       });
     });
 

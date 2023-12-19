@@ -6,14 +6,16 @@ class UpdateRooms {
     this.socketServer = new SocketServer();
   }
 
-  async updateRooms(toSpecifiedSocketId = null) {
+  async updateRooms(activeRooms, toSpecifiedSocketId = null) {
     if (toSpecifiedSocketId)
       return this.socketServer.io(toSpecifiedSocketId).emit('active-rooms', {
         activeRooms: connectedUsersManager.getActiveRooms(),
       });
 
+    console.log('activeRooms aa', activeRooms);
+
     this.socketServer.io.emit('active-rooms', {
-      activeRooms: connectedUsersManager.getActiveRooms()
+      activeRooms: activeRooms || connectedUsersManager.getActiveRooms,
     });
   }
 }

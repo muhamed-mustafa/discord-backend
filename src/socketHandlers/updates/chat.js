@@ -39,19 +39,19 @@ class UpdateChatHistoryHandler {
       ? emitToSocketId
       : [emitToSocketId];
 
-    console.log('emitToSocketIds', emitToSocketIds);
+    // console.log('emitToSocketIds', emitToSocketIds);
 
     emitToSocketIds.forEach((participant) => {
       const activeConnections = connectedUsersManager.getActiveConnections(
         participant.toString()
       );
 
-      console.log('activeConnections', activeConnections);
+      // console.log('activeConnections', activeConnections);
 
       const onlineUsers = connectedUsersManager.getOnlineUsers();
 
       const isReceiverOnline = onlineUsers.filter((receiver) => {
-        console.log('receiver', receiver);
+        // console.log('receiver', receiver);
         return receiver.userId === receiverId;
       });
 

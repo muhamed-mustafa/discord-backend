@@ -11,18 +11,18 @@ class FriendsUpdateHandler {
   }
 
   async updateFriendsPendingInvitations(userId) {
-    console.log('userId', userId);
+    // console.log('userId', userId);
     const pendingInvitations = await FriendInvitation.findOne({
       receiver: userId,
     }).populate('sender', '_id username email');
 
     const receivers = connectedUsersManager.getActiveConnections(userId);
 
-    console.log('receivers', receivers);
-    console.log('pendingInvitations22', pendingInvitations);
+    // console.log('receivers', receivers);
+    // console.log('pendingInvitations22', pendingInvitations);
 
     receivers.forEach((receiverSocketId) => {
-      console.log('pendingInvitations14', pendingInvitations);
+      // console.log('pendingInvitations14', pendingInvitations);
       this.sendFriendInvitations(receiverSocketId, pendingInvitations);
     });
   }
@@ -58,9 +58,10 @@ class FriendsUpdateHandler {
         });
 
         receivers.forEach((receiverSocketId) => {
-          console.log('friends list', friendsList);
           this.sendFriendsList(receiverSocketId, friendsList);
         });
+
+        return friendsList;
       }
     }
   }

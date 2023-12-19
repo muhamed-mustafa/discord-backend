@@ -31,6 +31,18 @@ class ConnectionManager {
   roomCreateHandler(socket) {
     connectedUsersManager.roomCreateHandler(socket);
   }
+
+  joinRoomHandler(socket) {
+    connectedUsersManager.joinRoomHandler(socket);
+  }
+
+  leaveRoomHandler(socket) {
+    connectedUsersManager.leaveRoomHandler(socket);
+  }
+
+  disconnectHandler(socket) {
+    connectedUsersManager.disconnectHandler(socket);
+  }
 }
 
 export { ConnectionManager };
