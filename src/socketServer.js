@@ -34,6 +34,9 @@ class SocketServer {
 
       this.connectionManager.leaveRoomHandler(socket);
 
+      this.connectionManager.roomInitialize(socket)
+
+   
       socket.on('disconnect', () => {
         // this.connectionManager.handleRemoveConnection(socket);
         this.connectionManager.disconnectHandler(socket);

@@ -55,6 +55,14 @@ class RoomCreateHandler {
 
     console.log('getActiveRooms', await connectedUsersManager.getActiveRooms());
 
+    roomDetails.participants.forEach((participant) => {
+      if (participant.socketId !== participantDetails.socketId) {
+        socket.to(participant.socketId).emit('conn-prepare', {
+          connUserSocketId: participantDetails.socketId,
+        });
+      }
+    });
+
     this.updateRooms.updateRooms(activeRooms);
   }
 
@@ -89,6 +97,22 @@ class RoomCreateHandler {
     } catch (error) {
       console.log('error', error);
     }
+  }
+
+  async roomInitialize(socket, data) {
+    const { connUserSocketId } = data;
+
+    const initialData = { connUserSocketId: socket.id };
+
+    socket.to(connUserSocketId).emit('conn-init', initialData);
+  }
+
+  async connSignal(socket, data) {
+    const { connUserSocketId, signal } = data;
+
+    const initialData = { signal, connUserSocketId: socket.id };
+
+    socket.to(connUserSocketId).emit('conn-signal', initialData);
   }
 }
 

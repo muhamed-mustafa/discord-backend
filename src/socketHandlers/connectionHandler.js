@@ -39,6 +39,14 @@ class ConnectionManager {
   leaveRoomHandler(socket) {
     connectedUsersManager.leaveRoomHandler(socket);
   }
+  
+  roomInitialize(socket) {
+    connectedUsersManager.roomInitialize(socket);
+  }
+
+  connSignal(socket) {
+    connectedUsersManager.connSignal(socket);
+  }
 
   disconnectHandler(socket) {
     connectedUsersManager.disconnectHandler(socket);

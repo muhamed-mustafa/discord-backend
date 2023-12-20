@@ -28,6 +28,8 @@ class ConnectedUsersManager {
       return friendIds.includes(activeRoom.roomCreator.userId);
     });
 
+    setTimeout(() => activeRooms, [500]);
+
     console.log('friendsList come from connection', friendsList);
 
     console.log('activeRooms', activeRooms);
@@ -144,6 +146,18 @@ class ConnectedUsersManager {
   leaveRoomHandler(socket) {
     socket.on('leave-room', (data) => {
       roomCreateHandler.leaveRoom(socket, data);
+    });
+  }
+
+  roomInitialize(socket) {
+    socket.on('conn-init', (data) => {
+      roomCreateHandler.roomInitialize(socket, data);
+    });
+  }
+
+  connSignal(socket) {
+    socket.on('conn-signal', (data) => {
+      roomCreateHandler.connSignal(socket, data);
     });
   }
 }
